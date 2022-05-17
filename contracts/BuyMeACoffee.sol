@@ -67,4 +67,13 @@ contract BuyMeACoffee {
     function getMemos() public view returns (Memo[] memory) {
         return memos;
     }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
+
+    function changeOwner(address _newOwner) public onlyOwner {
+        owner = payable(_newOwner);
+    }
 }
